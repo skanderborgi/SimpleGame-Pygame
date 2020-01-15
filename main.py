@@ -19,7 +19,7 @@ pygame.display.set_caption("Meteor")
 icon=pygame.image.load("asteroid.png")
 pygame.display.set_icon(icon)
 #Player:
-playerImg=pygame.image.load("player.png")
+playerImg=pygame.image.load("playerStopped.png")
 playerX=280
 playerY=500
 playerX_change=0
@@ -59,14 +59,19 @@ while running:#game loop to make window always opened
 		if event.type==pygame.KEYDOWN:
 			if event.key==pygame.K_LEFT:
 				playerX_change=-1
+				playerImg=pygame.image.load("player.png")
 
 			if event.key==pygame.K_RIGHT:
 				playerX_change=1
+				playerImg=pygame.image.load("player.png")
+				
 			if event.key==pygame.K_DOWN:
 				playerY_change=1
 
 			if event.key==pygame.K_UP:
 				playerY_change=-1
+				playerImg=pygame.image.load("player.png")
+
 			if event.key==pygame.K_SPACE:
 				if Bullet_state is "hidden":
 					BulletY=playerY
@@ -95,6 +100,8 @@ while running:#game loop to make window always opened
 			if event.key==pygame.K_LEFT or event.key==pygame.K_RIGHT or event.key==pygame.K_DOWN or event.key==pygame.K_UP:
 				playerX_change=0
 				playerY_change=0
+				playerImg=pygame.image.load("playerStopped.png")
+
 
 
 
