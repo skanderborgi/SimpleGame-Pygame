@@ -2,10 +2,10 @@
 ### What is pygame?
 Pygame is a set of modules for Python for making video games.it has a number of modules including ones for graphics, sound, and input. Even though pygame is easy and great for beginners it's not really sufficient for creating more complicated games.
 ### Libraries
-⋅⋅* pygame (of course)
-⋅⋅* random
-⋅⋅* math
-⋅⋅* time
+..* pygame (of course)
+..* random
+..* math
+..* time
 
 
 ### Overview
