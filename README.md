@@ -6,6 +6,6 @@ So I created a simple game called metor, the code has two parts:
 the first part contains some function definition of the elements (the spaceship for example)  
 it contains: the location on X and Y ( X: the horizental and Y:vertical), knowing that the top screen Y=0   
 then, in the while loop we have our events (the game itself). We can see that we have an infinite loop to keep our game running.  
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png)
+![alt text](https://github.com/skanderborgi/SimpleGame-Pygame/blob/master/screenshot.png)
 
 
