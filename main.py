@@ -7,7 +7,7 @@ import time
 
 #Sound
 pygame.mixer.init()
-pygame.mixer.set_num_channels(2)
+pygame.mixer.set_num_channels(3)
 sound1 = pygame.mixer.Sound("bgmusic.ogg")
 
 
@@ -54,6 +54,34 @@ textY=650
 def show_score(X,Y):
 	score=font.render("Score: "+str(Score),True,(255,255,255))
 	screen.blit(score,(X,Y))
+#Dead
+fontDead=pygame.font.Font("joystix monospace.TTF",35)
+DeadX=140
+DeadY=320
+Death=False
+#For the sound to be launched once
+DeathSound = pygame.mixer.Sound("Explosion.wav")
+def run_once(f):
+    def wrapper(*args, **kwargs):
+        if not wrapper.has_run:
+            wrapper.has_run = True
+            return f(*args, **kwargs)
+    wrapper.has_run = False
+    return wrapper
+@run_once
+def Explosion(DeathSound):
+	pygame.mixer.Channel(0).play(DeathSound)
+
+
+
+
+
+
+
+
+def show_Dead(X,Y):
+	dead=fontDead.render("You are Dead",True,(255,255,255))
+	screen.blit(dead,(X,Y))
 
 
 
@@ -152,6 +180,17 @@ while running:#game loop to make window always opened
 
 	except:
 		pass
+	#Dead
+	D2=math.sqrt(math.pow(Ennemy1X-playerX,2)+math.pow(Ennemy1Y-playerY,2))
+	if D2<=40 :
+		Death=True
+	if Death is True:
+		Explosion(DeathSound)
+		show_Dead(DeadX,DeadY)
+		Ennemy1Y=-5
+		Ennemy1X=-5
+		playerY=1000
+
 
 
 
