@@ -1,5 +1,8 @@
 import pygame
 import random
+import math
+import time
+
 
 
 #Sound
@@ -43,8 +46,14 @@ def fire_Bullet(X,Y):
 	Bullet_state="fire"
 	screen.blit(BulletImg,(X+16,Y+10))
 
-
-
+#Score
+Score=0
+font=pygame.font.Font("joystix monospace.TTF",28)
+textX=10
+textY=650
+def show_score(X,Y):
+	score=font.render("Score: "+str(Score),True,(255,255,255))
+	screen.blit(score,(X,Y))
 
 
 
@@ -58,18 +67,18 @@ while running:#game loop to make window always opened
 		#if key clicked check whether left,right,up or down
 		if event.type==pygame.KEYDOWN:
 			if event.key==pygame.K_LEFT:
-				playerX_change=-1
+				playerX_change=-2.5
 				playerImg=pygame.image.load("player.png")
 
 			if event.key==pygame.K_RIGHT:
-				playerX_change=1
+				playerX_change=2.5
 				playerImg=pygame.image.load("player.png")
-				
+
 			if event.key==pygame.K_DOWN:
-				playerY_change=1
+				playerY_change=2.5
 
 			if event.key==pygame.K_UP:
-				playerY_change=-1
+				playerY_change=-2.5
 				playerImg=pygame.image.load("player.png")
 
 			if event.key==pygame.K_SPACE:
@@ -80,17 +89,17 @@ while running:#game loop to make window always opened
 					pygame.mixer.Channel(0).play(bulletSound)
 
 			if event.key==pygame.K_UP and event.key==pygame.K_RIGHT:
-				playerY_change=-1	
-				playerX_change=1
+				playerY_change=-2.5
+				playerX_change=2.5
 			if event.key==pygame.K_UP and event.key==pygame.K_LEFT:
-				playerY_change=-1	
-				playerX_change=-1		
+				playerY_change=-2.5	
+				playerX_change=-2.5		
 			if event.key==pygame.K_DOWN and event.key==pygame.K_RIGHT:
-				playerY_change=1	
-				playerX_change=1
+				playerY_change=2.5	
+				playerX_change=2.5
 			if event.key==pygame.K_DOWN and event.key==pygame.K_LEFT:
-				playerY_change=1	
-				playerX_change=-1		
+				playerY_change=2.5	
+				playerX_change=-2.5		
 
 
 
@@ -130,14 +139,31 @@ while running:#game loop to make window always opened
 		playerY=10
 	if playerY>=625:
 		playerY=625
+	#DestructionEnnemy1
+	try:
+		D=math.sqrt(math.pow(Ennemy1X-BulletX,2)+math.pow(Ennemy1Y-BulletY,2))
+		if D<=25:
+			Ennemy1Img=pygame.image.load("explosion.png")
+			Ennemy1(Ennemy1X,Ennemy1Y)
+			Score+=1
+			print("Bingo!")
+			Ennemy1Y=800
+			BulletY=-5
+
+	except:
+		pass
+
+
+
+	Ennemy1Img=pygame.image.load("ennemy1.png")
 	Ennemy1(Ennemy1X,Ennemy1Y)
 	player(playerX,playerY)
 	if (Ennemy1Y>625)or (Ennemy1X>540):
 		Ennemy1Y=100
 		Ennemy1X=random.randint(200,650)
 		Ennemy1(Ennemy1X,Ennemy1Y)
+	show_score(textX,textY)
 
-	#Destruction
-	
+
 	pygame.display.update()
  
