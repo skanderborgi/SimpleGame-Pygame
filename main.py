@@ -35,6 +35,9 @@ Ennemy1X=random.randint(200,650)
 Ennemy1Y=100
 def Ennemy1(X,Y):
 	screen.blit(Ennemy1Img,(X,Y))
+
+
+
 #Bullet
 BulletImg=pygame.image.load("bullet.png")
 bulletSound = pygame.mixer.Sound("bullet.wav")
